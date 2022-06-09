@@ -1,7 +1,6 @@
 import scrapy
-import unidecode
-from ..items import Specs
-
+from scrapy.loader import ItemLoader
+from tutorialscraper.items import Specs
 class SpecsSpider(scrapy.Spider):
     name = 'specs'
     allowed_domains = ['komputronik.pl']
@@ -13,51 +12,28 @@ class SpecsSpider(scrapy.Spider):
     def parse(self,response):
         for link in response.xpath('//li[@class="product-entry2 "]/div/div/a/@href').getall():
             url = response.urljoin(link)
-            yield scrapy.Request(url, callback = self.parse_specs)
+            yield response.follow(url,callback = self.parse_specs)
+            
     
     def parse_specs(self,response):
         
-        price = response.xpath('//*[@id="p-inner-prices"]/div[1]/span/span/text()').get().strip()
-        price = unidecode.unidecode(price).replace(' ','')
+        loader = ItemLoader(item = Specs(),response = response)
         
-        specsentrypoint = response.xpath('//div[@class="full-specification"]')   
-        name = response.xpath('//*[@id="p-content-specification"]/div[2]/h3/text()').get().strip()
-        producer = name.split(' ')[0]
-        cpu = specsentrypoint.xpath('//div[2]/table/tbody/tr[3]/td/text()').get().strip()
+        loader.add_xpath('price','//*[@id="p-inner-prices"]/div[1]/span/span')
+        loader.add_xpath('name','//*[@id="p-content-specification"]/div[2]/h3')
+        loader.add_xpath('producer','//*[@id="p-content-specification"]/div[2]/h3')
+        loader.add_xpath('cpu_producer','//div[@class="full-specification"]/div[2]/table/tbody/tr[2]/td')
+        loader.add_xpath('cpu','//div[@class="full-specification"]/div[2]/table/tbody/tr[3]/td') 
         try:
-            gpu = specsentrypoint.xpath('//div[3]/table/tbody/tr[2]/td/text()').get().strip()
+            gpu = response.xpath('//div[3]/table/tbody/tr[2]/td/text()').get().strip()
             if gpu=="":           
-                gpu = specsentrypoint.xpath('//div[3]/table/tbody/tr[2]/td/a/text()').get().strip()
+                gpu = response.xpath('//div[3]/table/tbody/tr[2]/td/a/text()').get().strip()
         except:
-            gpu = specsentrypoint.xpath('//div[3]/table/tbody/tr[2]/td/a/text()').get().strip()
-                
-             
-        memory = specsentrypoint.xpath('//div[4]/table/tbody/tr[1]/td/a/text()').get().strip()
-        drive_type = specsentrypoint.xpath('//div[5]/table/tbody/tr[1]/td/a/text()').get().strip()
-        drive_capacity = specsentrypoint.xpath('//div[5]/table/tbody/tr[2]/td/text()').get().strip()
-        mb_chipset = specsentrypoint.xpath('//div[7]/table/tbody/tr[1]/td/text()').get().strip()
+            gpu = response.xpath('//div[3]/table/tbody/tr[2]/td/a/text()').get().strip()
+        loader.add_value('gpu',gpu)
+        loader.add_xpath('memory','//div[@class="full-specification"]/div[4]/table/tbody/tr[1]/td/a')
+        loader.add_xpath('drive_type','//div[@class="full-specification"]/div[5]/table/tbody/tr[2]/td')
+        loader.add_xpath('drive_capacity','//div[@class="full-specification"]/div[5]/table/tbody/tr[2]/td')
+        loader.add_xpath('mb_chipset','//div[@class="full-specification"]/div[7]/table/tbody/tr[1]/td')
         
-        # specs = Specs(
-        #     producer=producer,
-        #     price=price,
-        #     name=name,
-        #     cpu=cpu,
-        #     memory=memory,
-        #     drive_type=drive_type,
-        #     drive_capacity=drive_capacity,
-        #     mb_chipset=mb_chipset,
-        # )
-        
-        # yield specs
-         
-        yield {
-            "producer":producer,
-            "price":price,
-            "name":name,
-            "cpu":cpu,
-            "gpu":gpu,
-            "memory":memory,
-            "drive_type":drive_type,
-            "drive_capacity":drive_capacity,
-            "mb_chipset":mb_chipset
-        }
+        yield loader.load_item()

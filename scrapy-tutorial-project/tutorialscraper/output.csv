@@ -1,0 +1,13 @@
+name,produceer,price,cpu_producer,cpu,gpu,memory,drive_type,drive_capacity,mb_chipset
+Komputronik Infinity X312 [C2],,4990zl,Intel,"i3-12100F (3.3 GHz, 4.3 GHz Turbo, 12MB Cache 58W)",Geforce RTX 3050,16 GB (2x8GB),1000 GB,1000 GB,Intel H610  (Asus H610M-A D4)
+ASUS ROG Strix G15DK-R5800X340W,,6999zl,AMD,"7 5800X (3.8GHz, 4.7GHz Turbo, 32MB Cache, 105W)",GeForce RTX 3070,16 GB,512 GB,512 GB,AMD B550
+Komputronik Infinity R550 [M2],,6990zl,AMD,"5 5600X (3.7GHz, 4.6GHz Turbo, 32MB Cache, 65W)",Geforce RTX 3060,16 GB (2x8GB),1000 GB,1000 GB,AMD B550  (Gigabyte B550 AORUS ELITE V2)
+Komputronik Infinity X510 [N1],,3699zl,Intel,"i5-10400F (2.9 GHz, 4.3 GHz Turbo, 12 MB Cache, 65W)",GeForce GTX 1650,16 GB (2x8GB),500 GB,500 GB,Intel H470  (ASUS PRIME H410M-K R2.0)
+Komputronik Infinity X312 [A2],,4499zl,Intel,"i3-12100F (3.3 GHz, 4.3 GHz Turbo, 12MB Cache 58W)",GeForce GTX 1650,16 GB (2x8GB),500 GB,500 GB,Intel H610  (ASUS PRIME H610M-E D4)
+Komputronik Infinity X512 [D4],,5190zl,Intel,"i5-12400F (2.5GHz, 4.4GHz Turbo, 18MB Cache, 65W)",GeForce GTX 1650,16 GB (2x8GB),500 GB,500 GB,Intel H610  (Asus H610M-A D4)
+Komputronik Infinity X312 [D2],,5790zl,Intel,"i3-12100F (3.3 GHz, 4.3 GHz Turbo, 12MB Cache 58W)",Geforce RTX 3060,16 GB (2x8GB),1000 GB,1000 GB,Intel H610  (Asus H610M-A D4)
+Komputronik Infinity X512 [B2],,5690zl,Intel,"i5-12400F (2.5GHz, 4.4GHz Turbo, 18MB Cache, 65W)",Geforce RTX 3050,16 GB (2x8GB),500 GB,500 GB,Intel H610  (ASUS PRIME H610M-E D4)
+Komputronik Infinity X511 [K2],,5990zl,Intel,"i5-11400F (2.6 GHz, 4.4 GHz Turbo, 12MB Cache, 65W)",Geforce RTX 3060,16 GB (2x8GB),1000 GB,1000 GB,Intel B560  (MSI B560-A PRO)
+Komputronik Infinity X510 [N2],,3999zl,Intel,"i5-10400F (2.9 GHz, 4.3 GHz Turbo, 12 MB Cache, 65W)",GeForce GTX 1650,16 GB (2x8GB),500 GB,500 GB,Intel H470  (ASUS PRIME H410M-K R2.0)
+ASUS ROG Strix G15DK-R5800X2190,,6799zl,AMD,"7 5800X (3.8GHz, 4.7GHz Turbo, 32MB Cache, 105W)",GeForce RTX 3070,16 GB,512 GB,512 GB,AMD B550
+Komputronik Infinity X510 [K2],,6490zl,Intel,"i5-10400F (2.9 GHz, 4.3 GHz Turbo, 12 MB Cache, 65W)",Geforce RTX 3060,16 GB (2x8GB),500 GB,500 GB,Intel B560  (Gigabyte B560M Aorus Elite)
