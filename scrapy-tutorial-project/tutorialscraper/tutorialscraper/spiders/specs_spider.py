@@ -32,7 +32,7 @@ class SpecsSpider(scrapy.Spider):
             gpu = response.xpath('//div[3]/table/tbody/tr[2]/td/a/text()').get().strip()
         loader.add_value('gpu',gpu)
         loader.add_xpath('memory','//div[@class="full-specification"]/div[4]/table/tbody/tr[1]/td/a')
-        loader.add_xpath('drive_type','//div[@class="full-specification"]/div[5]/table/tbody/tr[2]/td')
+        loader.add_xpath('drive_type','//div[@class="full-specification"]/div[5]/table/tbody/tr[1]/td/a')
         loader.add_xpath('drive_capacity','//div[@class="full-specification"]/div[5]/table/tbody/tr[2]/td')
         loader.add_xpath('mb_chipset','//div[@class="full-specification"]/div[7]/table/tbody/tr[1]/td')
         

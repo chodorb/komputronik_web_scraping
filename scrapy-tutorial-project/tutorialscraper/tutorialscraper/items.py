@@ -9,7 +9,7 @@ def format_cpu_producer(value):
     return value.strip().split(' ')[0]
 
 def format_price(value):
-    return unidecode.unidecode(value).strip().replace(' ', '')
+    return unidecode.unidecode(value).strip().replace(' ', '').replace('zl','')
 
 def format_producer(value):
     return value.strip().split(' ')[0]
