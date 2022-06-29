@@ -4,23 +4,19 @@ from .items import Specs
 from w3lib.html import remove_tags
 from unidecode import unidecode
 
+join = Join("")
+join_space = Join(" ")
 class SpecsItemLoader(ItemLoader):
     default_item_class = Specs
-    default_input_processor = Compose(lambda value: value[0],remove_tags,lambda value: value.strip())
-    default_output_processor = TakeFirst()
+    default_input_processor = Compose(lambda value: join(value),remove_tags,lambda value: value.strip())
+    default_output_processor = Compose(lambda value: join(value))
     
-    @staticmethod
-    def price_in(value):
-        value = value[0]
-        value = remove_tags(value)
-        value = unidecode(value)
-        value = value.strip()
-        return value
+    price_in = Compose(lambda value: join(value),lambda value: unidecode(value),remove_tags,lambda value: value.strip())
+    producer_out = Compose(lambda value: join(value),lambda value: value.split(' ')[0])     
         
-    
     @staticmethod
     def price_out(value):
-        value = value[0]
+        value = join(value)
         value = value.replace(' ','')
         value = value.replace('zl','')
         value = float(value)
@@ -28,14 +24,14 @@ class SpecsItemLoader(ItemLoader):
 
     @staticmethod
     def cpu_producer_out(value):
-        value = value[0]
+        value = join(value)
+        value = remove_tags(value)
+        value = value.strip()
         value = value.split(' ')[0]
         return value
     
     @staticmethod
-    def producer_in(value):
-        value = value[1]
-        value = remove_tags(value)
-        value = value.strip()
+    def drive_capacity_out(value):
+        value = value[0].strip()
         return value
-    
+        
